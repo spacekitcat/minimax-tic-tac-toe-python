@@ -1,0 +1,4 @@
+scipy==1.5.3
+numpy==1.18.5
+qprompt==0.16.0
+rich==9.2.0
