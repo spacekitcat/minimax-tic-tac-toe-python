@@ -142,19 +142,18 @@ def get_current_player(board):
     return Player.X
 
 class Node():
-  def __init__(self, board):
+  def __init__(self, board, move=None):
     self.board = board
-    self.move = None
+    self.move = move
     self.player = Player.O
 
   def get_player(self):
     return get_current_player(self.board)
 
   def copy(self, move):
-    copy = deepcopy(self)
-    set_board_position(copy.get_board(), move, self.get_player().value)
-    copy.move = move
-    return copy
+    board_copy = deepcopy(self.get_board())
+    set_board_position(board_copy, move, self.get_player().value)
+    return Node(board_copy, move)
 
   def get_board(self):
     return self.board
@@ -275,6 +274,6 @@ while (_game_counter < _games_to_play):
   print(f'\tX WINS {_x_wins:08}')
   print(f'\tO WINS {_o_wins:08}')
   print()
-  
+
   _game_counter += 1
 
